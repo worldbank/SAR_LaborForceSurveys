@@ -21,11 +21,7 @@ In this repository, we have the following country/years available:
 | 2022    |     --      | --         | ✓      | --     | --       | --     | --       |  --       | 
 
 ## Getting Started
-### Step-by-step explanation
-1. Run the Master do file in the "Master" directory for each country and year: "code_year_survey_M". 
 
-#### SAR database
-2. Run the SARLD do files in the "SARLD" directory for each country and year: "code_year_survey_SARLD".
 
 ## Help
 For any questions, please get in contact with the SAR Statistical Team at: sardatalab@worldbank.org
