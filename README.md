@@ -20,9 +20,6 @@ In this repository, we have the following country/years available:
 | 2021    |     --      | --         | ✓      | ✓      | --       | --     | --       |  ✓        | 
 | 2022    |     --      | --         | ✓      | --     | --       | --     | --       |  --       | 
 
-## Getting Started
-
-
 ## Help
 For any questions, please get in contact with the SAR Statistical Team at: sardatalab@worldbank.org
 
