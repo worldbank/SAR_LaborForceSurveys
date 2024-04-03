@@ -42,28 +42,25 @@ g year = 2022
 * int_year = interview year
 g int_year = 2022
 
-* int_month = interview month
-* BGD 2022 LFS only has info on quarters. 
-* 1st quarter: Jan-March
-* 2nd quarter: April-June
-* 3rd quarter: July-September
-* 4th quarter: Oct-December
-g int_month = runiformint(1, 3) if qtr == 1
-replace int_month = runiformint(4, 6) if qtr == 2
-replace int_month = runiformint(7, 9) if qtr == 3
-replace int_month = runiformint(10, 12) if qtr == 4
+* int_month = interview month 
+g int_month = V1_MONTH
+replace int_month = V2_MONTH if missing(int_month)
+replace int_month = V3_MONTH if missing(int_month)
+replace int_month = . if int_month >= 12
 
 * hhid = Household identifier
-egen hhid= group (PSU EAUM HHNO)
+gen psu_str = string(PSU, "%04.0f")
+gen eaum_str  = string(EAUM, "%03.0f")
+gen hh_str  = string(HHNO, "%03.0f")
+egen hhid = concat(psu_str eaum_str hh_str)
 
 * pid = Personal identifier
-byso hhid: gen ln=(_n)
+egen ln = group(hhid age male EMP_HRLN)
+drop if missing(ln)
 gen lineno_str = string(ln, "%02.0f")
 egen pid = concat(hhid lineno_str)
-
-* confirm unique identifiers: hhid + pid
+duplicates drop pid qtr, force // 4 obs dropped
 * In BGD 2022, hhid and pid are not unique ids. same individual is visited acrossed multiple quaters
-isid hhid pid qtr
 
 * weight = Household weight
 * weight is divided by 4 to match up with the total popualtion
