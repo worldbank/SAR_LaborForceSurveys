@@ -55,12 +55,15 @@ gen hh_str  = string(HHNO, "%03.0f")
 egen hhid = concat(psu_str eaum_str hh_str)
 
 * pid = Personal identifier
-egen ln = group(hhid age male EMP_HRLN)
-drop if missing(ln)
-gen lineno_str = string(ln, "%02.0f")
+gen lineno_str = string(EMP_HRLN, "%02.0f")
+gen mgt_str  = string(MGT_LN, "%03.0f")
+gen mlab = "m"
+egen mgt_ln = concat(mgt_str mlab)
+replace lineno_str = mgt_ln if missing(EMP_HRLN)
 egen pid = concat(hhid lineno_str)
 duplicates drop pid qtr, force // 4 obs dropped
-* In BGD 2022, hhid and pid are not unique ids. same individual is visited acrossed multiple quaters
+drop mgt_str mlab mgt_ln
+* In BGD 2022, hhid and pid are not unique ids. same individual is visited acrossed multiple quarters
 
 * weight = Household weight
 * weight is divided by 4 to match up with the total popualtion
