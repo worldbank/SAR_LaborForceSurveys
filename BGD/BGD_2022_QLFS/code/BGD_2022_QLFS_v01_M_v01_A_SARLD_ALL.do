@@ -1,7 +1,7 @@
 ***********************************************************************
 *	BGD_2022_QLFS
 *	SAR Labor Harmonization
-*	Dec 2023
+*	Updated April 2024
 *	Sizhen Fang, sfang2@worldbank.org
 ***********************************************************************
 clear
@@ -227,8 +227,8 @@ replace lstatus = 1 if EMP_02 == 1 //worked for business, farming, others
 replace lstatus = 1 if EMP_03 == 1 //worked unpaid in family bussiness
 replace lstatus = 1 if EMP_04 == 1 //produced goods and agri
 replace lstatus = 1 if EMP_06 == 1 //employed but absent
-replace lstatus = 2 if missing(lstatus) & !missing(JSA_01) //not in employment
-replace lstatus = 3 if missing(lstatus) & JSA_01 == 2 & JSA_02 == 2 //not in employment and not searching
+replace lstatus = 2 if JSA_01 == 1 & JSA_06 == 1 //looking to start a new job
+replace lstatus = 2 if JSA_02 == 1 & JSA_06 == 1 //looking to start a new business 
 replace lstatus = 3 if missing(lstatus)
 replace lstatus = . if age < minlaborage
 
