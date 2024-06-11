@@ -46,7 +46,7 @@ g int_year = 2022
 g int_month = V1_MONTH
 replace int_month = V2_MONTH if missing(int_month)
 replace int_month = V3_MONTH if missing(int_month)
-replace int_month = . if int_month >= 12
+replace int_month = . if int_month > 12
 
 * hhid = Household identifier
 gen psu_str = string(PSU, "%04.0f")
