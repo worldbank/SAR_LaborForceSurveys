@@ -30,34 +30,26 @@ cap mkdir "${rootdatalib}/`countrycode'/`surveyfolder'/`surveyfolder'_v`vm'_M_v`
 cap mkdir "${rootdatalib}/`countrycode'/`surveyfolder'/`surveyfolder'_v`vm'_M_v`va'_A_`type'/Data/Harmonized"
 cap mkdir "${rootdatalib}/`countrycode'/`surveyfolder'/`surveyfolder'_v`vm'_M_v`va'_A_`type'/Program"
 
-// * load data
-// // datalibweb, country(BGD) year(2015) type(GLDRAW) surveyid(QLFS) clear
-// use "C:\Users\wb611670\WBG\Laura Liliana Moreno Herrera - 06.SARMD\WORKINGDATA\BGD\BGD_2015_QLFS\BGD_2015_QLFS_v01_M\Data\Original\qlfs q1 2016 microdata.dta", clear
-// append using "C:\Users\wb611670\WBG\Laura Liliana Moreno Herrera - 06.SARMD\WORKINGDATA\BGD\BGD_2015_QLFS\BGD_2015_QLFS_v01_M\Data\Original\qlfs q2 2016 microdata.dta", force
-// append using "C:\Users\wb611670\WBG\Laura Liliana Moreno Herrera - 06.SARMD\WORKINGDATA\BGD\BGD_2015_QLFS\BGD_2015_QLFS_v01_M\Data\Original\qlfs q3 2015 microdata.dta", force
-// append using "C:\Users\wb611670\WBG\Laura Liliana Moreno Herrera - 06.SARMD\WORKINGDATA\BGD\BGD_2015_QLFS\BGD_2015_QLFS_v01_M\Data\Original\qlfs q4 2015 microdata.dta", force
-
-* temp path
-use "/Users/sizhen/Documents/SAR/LFS/BGD_2015_QLFS/BGD_2015_QLFS_v02_M/Data/Original/qlfs q1 2016 microdata.dta", clear
+* load data
+* P drive
+use "P:\SARMD\SARDATABANK\SAR_DATABANK\BGD\BGD_2015_QLFS\BGD_2015_QLFS_v01_M\Data\Stata\qlfs q1 2016 microdata.dta", clear
 rename (q36 q48 q57 q58b q64a) (q36_b q48_str q57_b q58b_b q64a_3_int)
 gen file = "16-q1-"
 
-append using "/Users/sizhen/Documents/SAR/LFS/BGD_2015_QLFS/BGD_2015_QLFS_v02_M/Data/Original/qlfs q3 2015 microdata.dta"
+append using "P:\SARMD\SARDATABANK\SAR_DATABANK\BGD\BGD_2015_QLFS\BGD_2015_QLFS_v01_M\Data\Stata\qlfs q3 2015 microdata.dta"
 rename q36 q36_3_str
 rename q64a q64a_3_str
 replace file = "15-q3-" if missing(file)
 
-append using "/Users/sizhen/Documents/SAR/LFS/BGD_2015_QLFS/BGD_2015_QLFS_v02_M/Data/Original/qlfs q4 2015 microdata.dta"
+append using "P:\SARMD\SARDATABANK\SAR_DATABANK\BGD\BGD_2015_QLFS\BGD_2015_QLFS_v01_M\Data\Stata\qlfs q4 2015 microdata.dta"
 rename (q36 q48 q57 q58b q64) (q36_3_by q48_2_str q57_2_b q58b_2_str q64_2_b)
 rename (q64a visit q22 q26 q27old) (q64a_2_str visit_str q16 q20 q21)
 rename (q28old q28 q29old q30old q27 q29 q30 q25 q31 q32 q33 q34 q35 q37 q38 q39 q40 )(q22 q28old q23 q24 q27old q29old q30old q25old q25 q26 q27 q28 q29 q31 q32 q33 q34)
 rename (q41 q42 q43a q43b q44 q45 q46 q47 q49a q50 q51 q52a q52b q52c q52d q52e q52f q52g q53a q53b q53c q53d q53e q53f q53g q54 q55 q56 q58a q58c q58d q58e q58f q58g q58h q59 q60a q60b q60cr q61 q62 q63a q63b q63c q65 q66 q67 q68a q68b q68c q69 q70 q71 q72 q73 q74a q74b q74c q74d q74e q74f q74g q74h q74i q75a q75b q75c q75d q76 q77 q78 q79 q80 q81 q82 q83 q84 q85 q86 q87 q88 q89 q90a q90b q90c q90d q90e q90f q90g q91a q91b q91c q91d q91e q91f q92 q93 q94 q95 q96 q97a q97b q97c q97d q97e q97f q97g q97h q97i q97j q97k q97l q98 q99 q100 q101 q102a q102b q103 q104 q105a q105b q106 q107 q108) (q35 q36 q37a q37b q38 q39 q40 q41 q43a q44 q45 q46a q46b q46c q46d q46e q46f q46g q47a q47b q47c q47d q47e q47f q47g q48 q49 q50 q52a q52c q52d q52e q52f q52g q52h q53 q54a q54b q54c q55 q56 q57 q57a q57bsic q59 q60 q61 q62a q62b q62c q63 q64 q65 q66 q67 q68a q68b q68c q68d q68e q68f q68g q68h q68i q69a q69b q69c q69d q70 q71 q72 q73 q74 q75 q76 q77 q78 q79 q80 q81 q82 q83 q84a q84b q84c q84d q84e q84f q84g q85a q85b q85c q85d q85e q85f q86 q87 q88 q89 q90 q91a q91b q91c q91d q91e q91f q91g q91h q91i q91j q91k q91l q92 q93 q94 q95 q96a q96b q97 q98 q99a q99b q100 q101 q102)
 replace file = "15-q4-" if missing(file)
 
-append using "/Users/sizhen/Documents/SAR/LFS/BGD_2015_QLFS/BGD_2015_QLFS_v02_M/Data/Original/qlfs q2 2016 microdata.dta"
+append using "P:\SARMD\SARDATABANK\SAR_DATABANK\BGD\BGD_2015_QLFS\BGD_2015_QLFS_v01_M\Data\Stata\qlfs q2 2016 microdata.dta"
 replace file = "16-q2-" if missing(file)
-
-keep if inrange(completed, 1,3)
 
 * countrycode = country code
 g countrycode = "`countrycode'"
@@ -573,16 +565,10 @@ foreach unavailable_var in contract_year empldur_orig_2_year empldur_orig_year e
 	else g `unavailable_var' = .
 }
 
-
-// * label all SARLD harmonized variables and values
-// do "${rootlabels}/label_SARLAB_variables.do"
-// save "${output}/`surveyfolder'_v`vm'_M_v`va'_A_`type'_TMP", replace
-// keep ${keepharmonized}
-// * save harmonized data
-// save "${output}/`surveyfolder'_v`vm'_M_v`va'_A_`type'_IND", replace
-
-do "/Users/sizhen/Documents/SAR/LFS/label_SARLAB_variables.do"
-save "/Users/sizhen/Documents/SAR/LFS/`countrycode'_`year'_`survey'/`countrycode'_`year'_`survey'_v`vm'_M_v`va'_A_`type'/Data/Harmonized/`surveyfolder'_v`vm'_M_v`va'_A_`type'_TMP", replace
+* label all SARLD harmonized variables and values
+do "${rootlabels}/label_SARLAB_variables.do"
+save "${output}/`surveyfolder'_v`vm'_M_v`va'_A_`type'_TMP", replace
 keep ${keepharmonized}
-save "/Users/sizhen/Documents/SAR/LFS/`countrycode'_`year'_`survey'/`countrycode'_`year'_`survey'_v`vm'_M_v`va'_A_`type'/Data/Harmonized/`surveyfolder'_v`vm'_M_v`va'_A_`type'_IND", replace
+* save harmonized data
+save "${output}/`surveyfolder'_v`vm'_M_v`va'_A_`type'_IND", replace
 
